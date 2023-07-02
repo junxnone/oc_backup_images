@@ -34,7 +34,7 @@ runs:
         sudo apt install -y pandoc
         mkdir -p "${{ inputs.dir }}/bk/media"
         mkdir -p media
-        ls "${{ inputs.dir }}"/*.md
+        ls "${{ inputs.dir }}"/*.md  | xargs -i sh -c 'cat {} | pandoc -f gfm --extract-media=media -o "${{ inputs.dir }}"/bk/{} -w gfm'
         # ls "${{ inputs.dir }}/*.md" | xargs -i sh -c 'cat {} | pandoc -f gfm --extract-media=media -o "${{ inputs.dir }}/bk/{}" -w gfm'
     - name: Push changes to repo
       shell: bash
