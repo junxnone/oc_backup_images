@@ -35,6 +35,7 @@ runs:
         cd "${{ inputs.dir }}"
         mkdir -p bk/media
         mkdir -p media
+        touch media/README.md
         ls *.md  | xargs -i sh -c 'cat {} | pandoc -f gfm --extract-media=media -o bk/{} -w gfm'
         mv media/* bk/media/
         rm -fr media
